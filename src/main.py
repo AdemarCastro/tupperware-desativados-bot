@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from login_tupperware import LoginTupperware
+from download_desativados import DownloadDesativados
 from bot import Bot
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
@@ -18,6 +19,8 @@ def main():
     bot = Bot.get_instance()
 
     LoginTupperware().login()
+
+    DownloadDesativados().download()
 
     input("Pressione Enter para finalizar...")
     bot.stop_browser()

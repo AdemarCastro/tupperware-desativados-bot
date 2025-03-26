@@ -61,8 +61,8 @@ class LoginTupperware:
                 raise Exception("Inputs não encontrados")
             
             try:
-                botao_entrar = self.bot.find_element("//button[contains(text(), 'Entrar')]", By.XPATH)
-                botao_entrar.click()
+                self.bot.find_element("//button[contains(text(), 'Entrar')]", By.XPATH).click()
+                
             except Exception as e:
                 print(f"Erro ao clicar no botão de login: {e}")
                 raise
