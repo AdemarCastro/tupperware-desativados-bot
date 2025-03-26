@@ -1,8 +1,4 @@
-from botcity.web import WebBot
 from botcity.maestro import BotMaestroSDK
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from login_tupperware import LoginTupperware
 from download_desativados import DownloadDesativados
 from bot import Bot
@@ -21,6 +17,8 @@ def main():
     LoginTupperware().login()
 
     DownloadDesativados().download()
+
+
 
     input("Pressione Enter para finalizar...")
     bot.stop_browser()

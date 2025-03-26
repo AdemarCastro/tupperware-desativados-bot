@@ -1,7 +1,7 @@
-import os
-from bot import Bot
-from dotenv import load_dotenv
 from selenium.webdriver.common.by import By
+from dotenv import load_dotenv
+from bot import Bot
+import os
 
 class LoginTupperware:
     def __init__(self, headless=False):
