@@ -1,0 +1,49 @@
+# Arquivos do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ambientes virtuais
+venv/
+env/
+.venv/
+.conda/
+
+# Configurações do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs e dumps
+logs/
+*.log
+*.out
+*.err
+debug.log
+
+# Dependências do projeto
+*.egg-info/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Arquivos do BotCity
+botcity.log
+botcity_temp/
+screenshots/
+output/
+
+# Configurações do IDE
+.vscode/
+.idea/
+*.iml
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.swo
+
+# Variáveis de ambiente e credenciais
+.env
+*.env
+.env.local
+.env.*.local
