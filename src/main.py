@@ -3,6 +3,7 @@ from botcity.maestro import BotMaestroSDK
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from bot import Bot
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
@@ -13,11 +14,7 @@ def main():
     print(f"Task ID is: {execution.task_id}")
     print(f"Task Parameters are: {execution.parameters}")
 
-    bot = WebBot()
-    bot.headless = False
-
-    service = Service(ChromeDriverManager().install())
-    bot.driver_path = service.path
+    bot = Bot.get_instance()
 
     bot.browse("https://fv.tupperware.com.br/#!/")
 
