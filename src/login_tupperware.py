@@ -38,7 +38,7 @@ class LoginTupperware:
             self.acessar_site()
 
             inputs = {}
-            labels = self.bot.find_elements("//label", By.XPATH, 20000)
+            labels = self.bot.find_elements("//label", By.XPATH, ensure_visible=True)
             
             for label in labels:
                 text = label.text.strip().lower()
