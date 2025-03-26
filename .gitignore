@@ -47,3 +47,7 @@ output/
 *.env
 .env.local
 .env.*.local
+
+# Arquivos sensíveis
+downloads/
+uploads/
