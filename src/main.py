@@ -3,6 +3,7 @@ from botcity.maestro import BotMaestroSDK
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from login_tupperware import LoginTupperware
 from bot import Bot
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
@@ -16,7 +17,7 @@ def main():
 
     bot = Bot.get_instance()
 
-    bot.browse("https://fv.tupperware.com.br/#!/")
+    LoginTupperware().login()
 
     input("Pressione Enter para finalizar...")
     bot.stop_browser()
