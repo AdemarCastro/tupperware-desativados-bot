@@ -28,7 +28,6 @@ class Bot:
             )
 
             service = Service(ChromeDriverManager().install())
-            Bot._instance.driver_path = service.path
-            
+            Bot._instance.driver_path = service.path            
             Bot._instance.options = def_options
         return Bot._instance

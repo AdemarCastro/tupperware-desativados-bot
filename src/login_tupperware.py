@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 from bot import Bot
 import os
+from loguru import logger
 
 class LoginTupperware:
     def __init__(self, headless=False):
@@ -10,31 +11,43 @@ class LoginTupperware:
             carrega as variáveis de ambiente
         """
         try:
+            logger.info("Iniciando as credenciais de acesso.")
             load_dotenv()
-
             self.username = os.getenv("USERNAME")
             self.password = os.getenv("PASSWORD")
-
+        except Exception as e:
+            logger.error(f"Erro ao inicializar as credenciais de acesso: {e}")
+        else:
+            logger.success("Credenciais inicializadas com sucesso.")
+        
+        try:
+            logger.info("Inicializando o bot.")
             self.bot = Bot.get_instance()
         except Exception as e:
-            print(f"Erro ao inicializar o bot: {e}")
+            logger.error(f"Erro ao inicializar o bot: {e}")
             raise
+        else:
+            logger.success("Instância do bot inicializada com sucesso.")
 
     def acessar_site(self):
         """
             Abre o site da Tupperware
         """
         try:
+            logger.info("Acessando o site da Tupperware...")
             self.bot.browse("https://fv.tupperware.com.br/#!/")
         except Exception as e:
-            print(f"Erro ao acessar o site: {e}")
+            logger.error(f"Erro ao acessar o site: {e}")
             raise
+        else:
+            logger.success("Site da Tupperware acessado com sucesso.")
     
     def login(self):
         """
             Realiza o login no site da Tupperware
         """
         try:
+            logger.info("➥ Inicializa o procedimento de Login.")
             self.acessar_site()
 
             inputs = {}
@@ -55,17 +68,22 @@ class LoginTupperware:
                     else:
                         inputs["senha"] = label.find_element("./following-sibling::input", By.XPATH)
             if "login" in inputs and "senha" in inputs:
+                logger.info(f"Preenchendo as credenciais de login.")
                 inputs["login"].send_keys(self.username)
                 inputs["senha"].send_keys(self.password)
             else:
-                raise Exception("Inputs não encontrados")
+                logger.error("Erro ao encontrar os campos de login e senha.")
+                raise
             
             try:
                 self.bot.find_element("//button[contains(text(), 'Entrar')]", By.XPATH).click()
-                
             except Exception as e:
-                print(f"Erro ao clicar no botão de login: {e}")
+                logger.error(f"Erro ao clicar no botão de login: {e}")
                 raise
+            else:
+                logger.success("Botão de login selecionado com sucesso.")
         except Exception as e:
-            print(f"Erro ao realizar o login: {e}")
+            logger.error(f"Erro ao realizar o login: {e}")
             raise
+        else:
+            logger.success("Procedimento de Login concluído.")

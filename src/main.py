@@ -18,8 +18,6 @@ def main():
 
     DownloadDesativados().download()
 
-
-
     input("Pressione Enter para finalizar...")
     bot.stop_browser()
 
