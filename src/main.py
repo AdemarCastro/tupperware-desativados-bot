@@ -1,7 +1,7 @@
 from botcity.maestro import BotMaestroSDK
-from login_tupperware import LoginTupperware
-from download_desativados import DownloadDesativados
-from bot import Bot
+from bot.login_tupperware import LoginTupperware
+from bot.download_desativados import DownloadDesativados
+from bot.manager import Manager
 
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
@@ -12,7 +12,7 @@ def main():
     print(f"Task ID is: {execution.task_id}")
     print(f"Task Parameters are: {execution.parameters}")
 
-    bot = Bot.get_instance()
+    bot = Manager.get_instance()
 
     LoginTupperware().login()
 

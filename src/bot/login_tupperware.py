@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
-from bot import Bot
+from bot.manager import Manager
+from config.logging import logger
 import os
-from loguru import logger
 
 class LoginTupperware:
     def __init__(self, headless=False):
@@ -22,7 +22,7 @@ class LoginTupperware:
         
         try:
             logger.info("Inicializando o bot.")
-            self.bot = Bot.get_instance()
+            self.bot = Manager.get_instance()
         except Exception as e:
             logger.error(f"Erro ao inicializar o bot: {e}")
             raise

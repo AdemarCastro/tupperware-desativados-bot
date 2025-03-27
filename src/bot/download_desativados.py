@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-from config_logging import logger
-from bot import Bot
+from config.logging import logger
+from bot.manager import Manager
 
 class DownloadDesativados:
     def __init__(self):
@@ -9,7 +9,7 @@ class DownloadDesativados:
         """
         try:
             logger.info("Inicializando o bot.")
-            self.bot = Bot.get_instance()
+            self.bot = Manager.get_instance()
         except Exception as e:
             logger.error(f"Erro ao inicializar o bot: {e}")
             raise
