@@ -1,6 +1,6 @@
 # Tupperware Desativados Bot
 
-![alt text](tupperware_bot.gif)
+![alt text](tupperware_bot_v2.gif)
 
 Um projeto de automação em Python que gera, a partir do portal da Tupperware, relatórios de consultores desativados e envia por e-mail, pensado para facilitar a rotina de consultoras líderes (como minha mãe).
 
