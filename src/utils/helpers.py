@@ -1,22 +1,19 @@
 import os
 import pandas as pd
+from faker import Faker
 from config.logging import logger
-from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_JUSTIFY
+import random
 
 
 # Definir caminhos relativos à raiz do projeto
 PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 DIRETORIO_DOWNLOADS = os.path.abspath(os.path.join(os.path.dirname(__file__), "../..", "downloads"))
 DIRETORIO_UPLOADS = os.path.abspath(os.path.join(os.path.dirname(__file__), "../..", "uploads"))
-
-# Criar diretórios se não existirem
-os.makedirs(DIRETORIO_DOWNLOADS, exist_ok=True)
-os.makedirs(DIRETORIO_UPLOADS, exist_ok=True)
-
 
 def obter_arquivo_mais_recente(diretorio, extensoes):
     """
@@ -106,17 +103,14 @@ def encontrar_interseccao(df_desativados, df_cadastrados):
     try:
         df_cadastrados.drop("TelefoneCelular", axis=1, inplace=True)
 
-        # Encontrar interseção com base no Código e Nome
         df_interseccao = pd.merge(df_desativados[["Nome", "Telefone residencial", "Celular"]],
                                   df_cadastrados[["Código", "Nome"]],
                                   on=["Nome"], how="inner")
 
-        # Criar a coluna TelefoneCelular combinando 'Telefone residencial' e 'Celular'
         df_interseccao["TelefoneCelular"] = df_interseccao[["Telefone residencial", "Celular"]].apply(
             lambda x: ", ".join(x.dropna().astype(str)) if any(pd.notna(x)) else None, axis=1
         )
 
-        # Selecionar as colunas finais
         df_interseccao = df_interseccao[["Código", "Nome", "TelefoneCelular"]]
 
         return df_interseccao
